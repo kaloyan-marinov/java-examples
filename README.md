@@ -34,4 +34,11 @@ $ java \
     com.github.App \
     attention
 ATTENTION!
+
+$ mvn \
+    --quiet \
+    exec:java \
+    -Dexec.mainClass="com.github.App" \
+    -Dexec.args="'WATCH OUT'"
+WATCH OUT!
 ```
