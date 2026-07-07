@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations":[
+        {
+            "type": "java",
+            "name": "entrypoint",
+            "request": "launch",
+            "mainClass": "com.github.App",
+            "projectName": "java-examples", 
+            "args": "${input:programArgs}",
+            "cwd": "${workspaceFolder}"
+        }
+    ],
+    "inputs": [
+        {
+            "id": "programArgs",
+            "type": "promptString",
+            "description": "Arguments to pass to entrypoint"
+        }
+    ]
+}
