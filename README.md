@@ -17,9 +17,7 @@ $ tree -I target
         └── java
             └── com
                 └── github
-                    └── TestExclamation.java
-
-10 directories, 6 files
+                    └── Test*.java
 ```
 
 # Commands
@@ -30,11 +28,11 @@ $ mvn test
 
 # Run only one test class.
 $ mvn test \
-    -Dtest=TestExclamation
+    -Dtest=Test_01_Exclamation
 
 # Run only one test method.
 $ mvn test \
-    -Dtest=TestExclamation#build
+    -Dtest=Test_01_Exclamation#build
 ```
 
 Remove previous build output from the `target/` directory:
