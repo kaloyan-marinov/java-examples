@@ -1,0 +1,37 @@
+package com.github;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import org.junit.jupiter.api.Test;
+
+public class TestExclamation {
+    @Test
+    void build() {
+        // Arrange.
+        String word = "attention";
+
+        // Act.
+        String observed = Exclamation.build(word);
+
+        // Assert.
+        String expected = "ATTENTION!";
+        assertEquals(expected, observed);
+    }
+
+    @Test
+    void buildReceivesNullAsInput() {
+        // Act + Assert.
+        Exception exception = assertThrows(
+            NullPointerException.class,
+            () -> {
+                Exclamation.build(null);
+            }
+        );
+
+        String observed = exception.getMessage();
+
+        String expected = "Cannot invoke \"String.toUpperCase()\" because \"word\" is null";
+        assertEquals(expected, observed);
+    }
+}

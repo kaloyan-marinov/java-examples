@@ -1,21 +1,41 @@
 # Project layout
 
 ```shell
-$ tree -I target         
+$ tree -I target
 .
 ├── LICENSE
 ├── pom.xml
 ├── README.md
 └── src
-    └── main
+    ├── main
+    │   └── java
+    │       └── com
+    │           └── github
+    │               ├── App.java
+    │               └── Exclamation.java
+    └── test
         └── java
             └── com
                 └── github
-                    ├── App.java
-                    └── Exclamation.java
+                    └── TestExclamation.java
+
+10 directories, 6 files
 ```
 
 # Commands
+
+Compile the tests and run the via the `maven-surefire-plugin`:
+```shell
+$ mvn test
+
+# Run only one test class.
+$ mvn test \
+    -Dtest=TestExclamation
+
+# Run only one test method.
+$ mvn test \
+    -Dtest=TestExclamation#build
+```
 
 Remove previous build output from the `target/` directory:
 ```shell
