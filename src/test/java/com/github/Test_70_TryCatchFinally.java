@@ -12,6 +12,36 @@ public class Test_70_TryCatchFinally {
     private List<String> generateMessages(String input) {
         List<String> messages = new ArrayList<>();
 
+        /**
+         * https://www.baeldung.com/java-exceptions#anti-patterns
+         * =
+         * do NOT swallow `Exception`s
+         * 
+         * 1) When we catch an `Exception`,
+         *    refrain from providing an empty implementation (i.e. simply `{}`) for the `catch` block.
+         *    (
+         *    There are times when there’s a checked exception that we are confident will just never happen.
+         *    In those cases, we should still at least add a comment stating that we intentionally swallowing the exception.
+         *    )
+         * 
+         * 2) When we catch an `Exception`,
+         *    we should include it as a cause when throwing a new and/or custom `Exception`.
+         * 
+         * 3) Do NOT `return` from the `finally` block.
+         * 
+         *    (
+         *    by returning abruptly, the JVM will drop the exception, even if it was thrown from by our code
+         *    )
+         * 
+         * 4) Do NOT `throw` from the `finally` block.
+         * 
+         *    (
+         *    Similar to using `return` in a `finally` block,
+         *    the exception thrown in a `finally` block will take precedence over
+         *    the exception that arises in [any preceding block of the `try`-`catch`-`finally` construct.
+         * 
+         *    This will “erase” the original exception from the try block)
+         */
         try {
             messages.add("start parsing; input=" + input);
 
