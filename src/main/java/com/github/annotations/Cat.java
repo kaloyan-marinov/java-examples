@@ -14,7 +14,7 @@ public class Cat {
         // this.age = age;
     }
 
-    @RunImmediately
+    @AnnotationNotParameterizedForMethod
     public String meow() {
         return "Meow!";
     }

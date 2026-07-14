@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import com.github.annotations.Cat;
 import com.github.annotations.Dog;
 import com.github.annotations.AnnotationForField;
-import com.github.annotations.RunImmediately;
+import com.github.annotations.AnnotationNotParameterizedForMethod;
 import com.github.annotations.RunMultipleTimes;
 import com.github.annotations.AnnotationForClass;
 
@@ -84,7 +84,7 @@ public class Test_110_Annotations {
         List<String> observedValuesList = new ArrayList<>();
 
         for (Method mthd : myCat.getClass().getDeclaredMethods()) {
-            if (mthd.isAnnotationPresent(RunImmediately.class)) {
+            if (mthd.isAnnotationPresent(AnnotationNotParameterizedForMethod.class)) {
 
                 Object observed = null;
 
