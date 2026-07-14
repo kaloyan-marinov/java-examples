@@ -46,7 +46,7 @@ public class Test_110_Annotations {
     @Test
     void checkClassForSpecificAnnotation_1() {
         // Arrange.
-        Greeter greeter = new Greeter("John Doe");
+        Greeter greeter = new Greeter("John Doe", 29);
 
         // Act.
         boolean observed =
@@ -80,7 +80,7 @@ public class Test_110_Annotations {
     @Test
     void processAnnotationForField() {
         // Arrange.
-        Greeter greeter = new Greeter("John Doe");
+        Greeter greeter = new Greeter("John Doe", 29);
 
         // Act.
         List<String> observedValuesList = new ArrayList<>();
@@ -127,7 +127,7 @@ public class Test_110_Annotations {
     @Test
     void processAnnotationNotParameterizedForMethod() {
         // Arrange.
-        Greeter greeter = new Greeter("John Doe");
+        Greeter greeter = new Greeter("John Doe", 29);
 
         // Act.
         List<String> observedValuesList = new ArrayList<>();
@@ -166,7 +166,7 @@ public class Test_110_Annotations {
     @Test
     void processAnnotationParameterizedForMethod() {
         // Arrange.
-        Greeter greeter = new Greeter("John Doe");
+        Greeter greeter = new Greeter("John Doe", 29);
 
         // Act.
         List<String> observedValuesList = new ArrayList<>();
