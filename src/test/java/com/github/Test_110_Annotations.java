@@ -78,6 +78,53 @@ public class Test_110_Annotations {
     }
 
     @Test
+    void processAnnotationForField() {
+        // Arrange.
+        Cat myCat = new Cat("Stella");
+
+        // Act.
+        List<String> observedValuesList = new ArrayList<>();
+
+        for (Field fld : myCat.getClass().getDeclaredFields()) {
+            if (fld.isAnnotationPresent(AnnotationForField.class)) {
+
+                Object observed = null;
+
+                try {
+                    observed = fld.get(myCat);
+                } catch (IllegalAccessException e) {
+                    fail("Encountered IllegalAccessException : " + e.getStackTrace());
+                }
+
+                /*
+                if (observed instanceof String) {
+                    observedValuesList.add(
+                        ((String) observed).toUpperCase()
+                    );                    
+                }
+                */
+                if (observed instanceof String observedAsString) {
+                    observedValuesList.add(
+                        observedAsString.toUpperCase()
+                    );
+                }
+            }
+        }
+
+        String[] observedValues = observedValuesList.toArray(
+            new String[0]
+        );
+
+        // Assert.
+        String[] expectedValues = {"STELLA"};
+        assertArrayEquals(
+            expectedValues,
+            observedValues
+        );
+
+    }
+
+    @Test
     void processAnnotationThatIsNotParameterized() {
         // Arrange.
         Cat myCat = new Cat("Stella");
@@ -161,52 +208,5 @@ public class Test_110_Annotations {
             expectedValues,
             observedValues
         );
-    }
-
-    @Test
-    void processAnnotationOnField() {
-        // Arrange.
-        Cat myCat = new Cat("Stella");
-
-        // Act.
-        List<String> observedValuesList = new ArrayList<>();
-
-        for (Field fld : myCat.getClass().getDeclaredFields()) {
-            if (fld.isAnnotationPresent(AnnotationForField.class)) {
-
-                Object observed = null;
-
-                try {
-                    observed = fld.get(myCat);
-                } catch (IllegalAccessException e) {
-                    fail("Encountered IllegalAccessException : " + e.getStackTrace());
-                }
-
-                /*
-                if (observed instanceof String) {
-                    observedValuesList.add(
-                        ((String) observed).toUpperCase()
-                    );                    
-                }
-                */
-                if (observed instanceof String observedAsString) {
-                    observedValuesList.add(
-                        observedAsString.toUpperCase()
-                    );
-                }
-            }
-        }
-
-        String[] observedValues = observedValuesList.toArray(
-            new String[0]
-        );
-
-        // Assert.
-        String[] expectedValues = {"STELLA"};
-        assertArrayEquals(
-            expectedValues,
-            observedValues
-        );
-
     }
 }
