@@ -14,6 +14,8 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import com.github.reflection.Person;
+
 /**
  * Java's Reflection API is a set of features in the Java language
  * that enable programs to examine and change basically any element of any Java class
@@ -82,44 +84,6 @@ import org.junit.jupiter.api.Test;
  *   but in a completely different way
  */
 public class Test_100_Reflection {
-
-    public static class Person {
-        private final String name;
-        private int age;
-
-        public Person(String name, int age) {
-            this.name = name;
-            this.age = age;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public int getAge() {
-            return age;
-        }
-
-        public int setAge(int age) {
-            return age;
-        }
-
-        public String publicNonstaticMethod() {
-            return "This method is public & non-static.";
-        }
-
-        private String privateNonstaticMethod() {
-            return "This method is private & non-static.";
-        }
-
-        public static String publicStaticMethod() {
-            return "This method is public & static.";
-        }
-
-        private static String privateStaticMethod() {
-            return "This method is private & static.";
-        }
-    }
 
     @Test
     void _getClass() {
@@ -284,8 +248,7 @@ public class Test_100_Reflection {
         }
 
         // Act.
-        // TODO: look into why this test case passes even though the next statement is commented out 
-        // privateNonstaticMethod.setAccessible(true);
+        privateNonstaticMethod.setAccessible(true);
 
         Object observedFromPrivateNonstatic = null;
         try {
@@ -361,8 +324,7 @@ public class Test_100_Reflection {
         }
 
         // Act.
-        // TODO: look into why this test case passes even though the next statement is commented out 
-        // privateStaticMethod.setAccessible(true);
+        privateStaticMethod.setAccessible(true);
 
         Object observedFromPrivateStatic = null;
         try {
