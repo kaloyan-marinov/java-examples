@@ -125,7 +125,7 @@ public class Test_110_Annotations {
     }
 
     @Test
-    void processAnnotationThatIsNotParameterized() {
+    void processAnnotationNotParameterizedForMethod() {
         // Arrange.
         Cat myCat = new Cat("Stella");
 
