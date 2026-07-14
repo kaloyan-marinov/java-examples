@@ -44,7 +44,7 @@ import com.github.annotations.AnnotationForClass;
 public class Test_110_Annotations {
     
     @Test
-    void checkClassForAnnotation_1() {
+    void checkClassForSpecificAnnotation_1() {
         // Arrange.
         Cat myCat = new Cat("Stella");
 
@@ -61,7 +61,7 @@ public class Test_110_Annotations {
     }
     
     @Test
-    void checkClassForAnnotation_2() {
+    void checkClassForSpecificAnnotation_2() {
         // Arrange.
         Exclamation exclamation = new Exclamation();
 
