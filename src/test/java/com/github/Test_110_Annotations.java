@@ -12,7 +12,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.github.annotations.Cat;
+import com.github.annotations.Greeter;
 import com.github.annotations.AnnotationForField;
 import com.github.annotations.AnnotationNotParameterizedForMethod;
 import com.github.annotations.AnnotationParameterizedForMethod;
@@ -46,11 +46,11 @@ public class Test_110_Annotations {
     @Test
     void checkClassForSpecificAnnotation_1() {
         // Arrange.
-        Cat myCat = new Cat("Stella");
+        Greeter greeter = new Greeter("John Doe");
 
         // Act.
         boolean observed =
-            myCat
+            greeter
             .getClass()
             .isAnnotationPresent(AnnotationForClass.class)
         ;
@@ -80,18 +80,18 @@ public class Test_110_Annotations {
     @Test
     void processAnnotationForField() {
         // Arrange.
-        Cat myCat = new Cat("Stella");
+        Greeter greeter = new Greeter("John Doe");
 
         // Act.
         List<String> observedValuesList = new ArrayList<>();
 
-        for (Field fld : myCat.getClass().getDeclaredFields()) {
+        for (Field fld : greeter.getClass().getDeclaredFields()) {
             if (fld.isAnnotationPresent(AnnotationForField.class)) {
 
                 Object observed = null;
 
                 try {
-                    observed = fld.get(myCat);
+                    observed = fld.get(greeter);
                 } catch (IllegalAccessException e) {
                     fail("Encountered IllegalAccessException : " + e.getStackTrace());
                 }
@@ -116,7 +116,7 @@ public class Test_110_Annotations {
         );
 
         // Assert.
-        String[] expectedValues = {"STELLA"};
+        String[] expectedValues = {"JOHN DOE"};
         assertArrayEquals(
             expectedValues,
             observedValues
@@ -127,18 +127,18 @@ public class Test_110_Annotations {
     @Test
     void processAnnotationNotParameterizedForMethod() {
         // Arrange.
-        Cat myCat = new Cat("Stella");
+        Greeter greeter = new Greeter("John Doe");
 
         // Act.
         List<String> observedValuesList = new ArrayList<>();
 
-        for (Method mthd : myCat.getClass().getDeclaredMethods()) {
+        for (Method mthd : greeter.getClass().getDeclaredMethods()) {
             if (mthd.isAnnotationPresent(AnnotationNotParameterizedForMethod.class)) {
 
                 Object observed = null;
 
                 try {
-                    observed = mthd.invoke(myCat);
+                    observed = mthd.invoke(greeter);
                 } catch (IllegalAccessException | InvocationTargetException e) {
                     fail("encountered an IllegalAccessException | InvocationTargetException : " + e.getStackTrace());
                 }
@@ -156,7 +156,7 @@ public class Test_110_Annotations {
         );
 
         // Assert.
-        String[] expectedValues = {"Meow!"};
+        String[] expectedValues = {"Hello!"};
         assertArrayEquals(
             expectedValues,
             observedValues
@@ -166,12 +166,12 @@ public class Test_110_Annotations {
     @Test
     void processAnnotationParameterizedForMethod() {
         // Arrange.
-        Cat myCat = new Cat("Stella");
+        Greeter greeter = new Greeter("John Doe");
 
         // Act.
         List<String> observedValuesList = new ArrayList<>();
         
-        for (Method mthd : myCat.getClass().getDeclaredMethods()) {
+        for (Method mthd : greeter.getClass().getDeclaredMethods()) {
             if (mthd.isAnnotationPresent(AnnotationParameterizedForMethod.class)) {
 
                 Object observed = null;
@@ -180,7 +180,7 @@ public class Test_110_Annotations {
 
                 for (int i = 0; i < annotation.times(); i++) {
                     try {
-                        observed = mthd.invoke(myCat);
+                        observed = mthd.invoke(greeter);
                     } catch (IllegalAccessException | InvocationTargetException e) {
                         fail("encountered an IllegalAccessException | InvocationTargetException : " + e.getStackTrace());
                     }
@@ -200,9 +200,8 @@ public class Test_110_Annotations {
 
         // Assert.
         String[] expectedValues = {
-            "[A `Cat` is eating.]",
-            "[A `Cat` is eating.]",
-            "[A `Cat` is eating.]"
+            "Bye!",
+            "Bye!"
         };
         assertArrayEquals(
             expectedValues,
