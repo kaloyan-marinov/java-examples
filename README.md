@@ -11,13 +11,23 @@ $ tree -I target
     │   └── java
     │       └── com
     │           └── github
+    │               ├── annotations
+    │               │   ├── AnnotationForClass.java
+    │               │   ├── AnnotationForField.java
+    │               │   ├── AnnotationNotParameterizedForMethod.java
+    │               │   ├── AnnotationParameterizedForMethod.java
+    │               │   └── Greeter.java
     │               ├── App.java
-    │               └── Exclamation.java
+    │               ├── Exclamation.java
+    │               └── reflection
+    │                   └── Person.java
     └── test
-        └── java
-            └── com
-                └── github
-                    └── Test*.java
+        ├── java
+        │   └── com
+        │       └── github
+        │           └── Test*.java
+        └── resources
+            └── hello-world.txt
 ```
 
 # Commands
