@@ -114,6 +114,19 @@ public class Test_41_HashSet {
     }
 
     @Test
+    void createFromArraysArrayListAndMakeComparison() {
+        // Act.
+        Set<String> planetNames = new HashSet<>(
+            Arrays.asList("Mercury", "Venus", "Earth", "Mars")
+        );
+
+        // Assert
+        assertFalse(planets == planetNames);
+        
+        assertEquals(planets, planetNames);
+    }
+
+    @Test
     void addSameValueMultipleTimes() {
         // Arrange.
         Set<String> planetNames = new HashSet<>(planets);
