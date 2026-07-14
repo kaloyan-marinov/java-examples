@@ -13,11 +13,13 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import com.github.annotations.Cat;
-import com.github.annotations.Dog;
 import com.github.annotations.AnnotationForField;
 import com.github.annotations.AnnotationNotParameterizedForMethod;
 import com.github.annotations.AnnotationParameterizedForMethod;
 import com.github.annotations.AnnotationForClass;
+
+// TODO: (2026/07/14, 21:07)
+//      find out why the `Exclamation` class does not need to be imported explicitly
 
 /**
  * 
@@ -61,11 +63,11 @@ public class Test_110_Annotations {
     @Test
     void checkClassForAnnotation_2() {
         // Arrange.
-        Dog myDog = new Dog("Peter");
+        Exclamation exclamation = new Exclamation();
 
         // Act.
         boolean observed =
-            myDog
+            exclamation
             .getClass()
             .isAnnotationPresent(AnnotationForClass.class)
         ;
