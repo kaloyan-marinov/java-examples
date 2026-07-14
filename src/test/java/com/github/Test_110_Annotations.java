@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import com.github.annotations.Cat;
 import com.github.annotations.Dog;
-import com.github.annotations.Important;
+import com.github.annotations.AnnotationForField;
 import com.github.annotations.RunImmediately;
 import com.github.annotations.RunMultipleTimes;
 import com.github.annotations.AnnotationForClass;
@@ -170,7 +170,7 @@ public class Test_110_Annotations {
         List<String> observedValuesList = new ArrayList<>();
 
         for (Field fld : myCat.getClass().getDeclaredFields()) {
-            if (fld.isAnnotationPresent(Important.class)) {
+            if (fld.isAnnotationPresent(AnnotationForField.class)) {
 
                 Object observed = null;
 

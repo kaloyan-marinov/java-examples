@@ -3,7 +3,7 @@ package com.github.annotations;
 @AnnotationForClass
 public class Cat {
 
-    @Important
+    @AnnotationForField
     // private String name;  // causes `processAnnotationOnField` to fail
     public String name;
     private int age;
