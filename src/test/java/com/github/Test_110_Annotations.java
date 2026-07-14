@@ -16,7 +16,7 @@ import com.github.annotations.Cat;
 import com.github.annotations.Dog;
 import com.github.annotations.AnnotationForField;
 import com.github.annotations.AnnotationNotParameterizedForMethod;
-import com.github.annotations.RunMultipleTimes;
+import com.github.annotations.AnnotationParameterizedForMethod;
 import com.github.annotations.AnnotationForClass;
 
 /**
@@ -123,11 +123,11 @@ public class Test_110_Annotations {
         List<String> observedValuesList = new ArrayList<>();
         
         for (Method mthd : myCat.getClass().getDeclaredMethods()) {
-            if (mthd.isAnnotationPresent(RunMultipleTimes.class)) {
+            if (mthd.isAnnotationPresent(AnnotationParameterizedForMethod.class)) {
 
                 Object observed = null;
 
-                RunMultipleTimes annotation = mthd.getAnnotation(RunMultipleTimes.class);
+                AnnotationParameterizedForMethod annotation = mthd.getAnnotation(AnnotationParameterizedForMethod.class);
 
                 for (int i = 0; i < annotation.times(); i++) {
                     try {

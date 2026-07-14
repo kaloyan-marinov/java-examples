@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface RunMultipleTimes {
+public @interface AnnotationParameterizedForMethod {
     /*
      * These parameters can only be:
      * - a primitive type

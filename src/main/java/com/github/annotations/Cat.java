@@ -19,7 +19,7 @@ public class Cat {
         return "Meow!";
     }
 
-    @RunMultipleTimes(times = 3)
+    @AnnotationParameterizedForMethod(times = 3)
     public String eat() {
         return "[A `Cat` is eating.]";
     }
