@@ -1,6 +1,6 @@
 package com.github.annotations;
 
-@VeryImportant
+@AnnotationForClass
 public class Cat {
 
     @Important

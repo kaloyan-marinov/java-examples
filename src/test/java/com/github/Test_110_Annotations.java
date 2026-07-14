@@ -17,7 +17,7 @@ import com.github.annotations.Dog;
 import com.github.annotations.Important;
 import com.github.annotations.RunImmediately;
 import com.github.annotations.RunMultipleTimes;
-import com.github.annotations.VeryImportant;
+import com.github.annotations.AnnotationForClass;
 
 /**
  * 
@@ -50,7 +50,7 @@ public class Test_110_Annotations {
         boolean observed =
             myCat
             .getClass()
-            .isAnnotationPresent(VeryImportant.class)
+            .isAnnotationPresent(AnnotationForClass.class)
         ;
 
         // Assert.
@@ -67,7 +67,7 @@ public class Test_110_Annotations {
         boolean observed =
             myDog
             .getClass()
-            .isAnnotationPresent(VeryImportant.class)
+            .isAnnotationPresent(AnnotationForClass.class)
         ;
 
         // Assert.
