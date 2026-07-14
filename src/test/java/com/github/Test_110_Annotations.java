@@ -164,7 +164,7 @@ public class Test_110_Annotations {
     }
 
     @Test
-    void processAnnotationThatIsParameterized() {
+    void processAnnotationParameterizedForMethod() {
         // Arrange.
         Cat myCat = new Cat("Stella");
 
