@@ -2,6 +2,7 @@ package com.github;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,33 @@ public class Test_120_Streams {
         );
 
         findWithinArrayList = new FindWithinArrayList(transactions);
+    }
+
+    @Test
+    void distinctElementsWithEqualIDsAreNotAllowed() {
+        // Arrange.
+        List<Transaction> transactions = new ArrayList<>();
+        long id = 1717;
+
+        transactions.add(
+            new Transaction(id, 3000, 0)
+        );
+        transactions.add(
+            new Transaction(id, 3001, 100)
+        );
+
+        // Act + Assert.
+        Exception exception = assertThrows(
+            RuntimeException.class,
+            () -> {
+                new FindWithinArrayList(transactions);
+            }
+        );
+
+        String observed = exception.getMessage();
+
+        String expected = "the passed-in 'transactions' contains distinct elements with equal IDs";
+        assertEquals(expected, observed);
     }
 
     @Test

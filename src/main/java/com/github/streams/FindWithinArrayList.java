@@ -1,6 +1,8 @@
 package com.github.streams;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.IntStream;
 
 public class FindWithinArrayList {
@@ -9,8 +11,20 @@ public class FindWithinArrayList {
 
     public FindWithinArrayList(List<Transaction> transactions) {
         // Validate that there are no duplicated transaction IDs.
+        Set<Long> ids = new HashSet<>();
+        for (Transaction t : transactions) {
+            ids.add(t.id());
+        }
+
+        if (ids.size() < transactions.size()) {
+            throw new RuntimeException("the passed-in 'transactions' contains distinct elements with equal IDs");
+        }
 
         this.transactions = transactions;
+    }
+
+    public List<Transaction> getTransactions() {
+        return transactions;
     }
 
     public Transaction findByIdWithoutStreams(long transactionId) {
