@@ -11,65 +11,65 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.github.streams.FindWithinArrayList;
-import com.github.streams.Transaction;
+import com.github.streams.Invoice;
 
 public class Test_120_Streams {
     FindWithinArrayList findWithinArrayList;
 
     @BeforeEach
     void setUp() {
-        List<Transaction> transactions = new ArrayList<>();
+        List<Invoice> invoices = new ArrayList<>();
 
-        transactions.add(
-            new Transaction(0, 2000, 0)
+        invoices.add(
+            new Invoice(0, 2000, 0)
         );
-        transactions.add(
-            new Transaction(2, 2001, 100)
+        invoices.add(
+            new Invoice(2, 2001, 100)
         );
-        transactions.add(
-            new Transaction(4, 2002, 200)
+        invoices.add(
+            new Invoice(4, 2002, 200)
         );
-        transactions.add(
-            new Transaction(8, 2003, 300)
+        invoices.add(
+            new Invoice(8, 2003, 300)
         );
 
-        findWithinArrayList = new FindWithinArrayList(transactions);
+        findWithinArrayList = new FindWithinArrayList(invoices);
     }
 
     @Test
     void distinctElementsWithEqualIDsAreNotAllowed() {
         // Arrange.
-        List<Transaction> transactions = new ArrayList<>();
+        List<Invoice> invoices = new ArrayList<>();
         long id = 1717;
 
-        transactions.add(
-            new Transaction(id, 3000, 0)
+        invoices.add(
+            new Invoice(id, 3000, 0)
         );
-        transactions.add(
-            new Transaction(id, 3001, 100)
+        invoices.add(
+            new Invoice(id, 3001, 100)
         );
 
         // Act + Assert.
         Exception exception = assertThrows(
             RuntimeException.class,
             () -> {
-                new FindWithinArrayList(transactions);
+                new FindWithinArrayList(invoices);
             }
         );
 
         String observed = exception.getMessage();
 
-        String expected = "the passed-in 'transactions' contains distinct elements with equal IDs";
+        String expected = "the passed-in 'invoices' contains distinct elements with equal IDs";
         assertEquals(expected, observed);
     }
 
     @Test
     void findByIdWithoutStreams_1() {
         // Arrange.
-        long existentTransactionId = 4;
+        long existentInvoiceId = 4;
 
         // Act.
-        Transaction observed = findWithinArrayList.findByIdWithoutStreams(existentTransactionId);
+        Invoice observed = findWithinArrayList.findByIdWithoutStreams(existentInvoiceId);
 
         // Assert.
         assertEquals(4, observed.id());
@@ -80,10 +80,10 @@ public class Test_120_Streams {
     @Test
     void findByIdWithoutStreams_2() {
         // Arrange.
-        long nonexistentTransactionId = 17;
+        long nonexistentInvoiceId = 17;
 
         // Act.
-        Transaction observed = findWithinArrayList.findByIdWithoutStreams(nonexistentTransactionId);
+        Invoice observed = findWithinArrayList.findByIdWithoutStreams(nonexistentInvoiceId);
 
         // Assert.
         assertNull(observed);
@@ -92,10 +92,10 @@ public class Test_120_Streams {
     @Test
     void findByIdUsingStreams_1() {
         // Arrange.
-        long existentTransactionId = 4;
+        long existentInvoiceId = 4;
 
         // Act.
-        Transaction observed = findWithinArrayList.findByIdUsingStreams(existentTransactionId);
+        Invoice observed = findWithinArrayList.findByIdUsingStreams(existentInvoiceId);
 
         // Assert.
         assertEquals(4, observed.id());
@@ -106,10 +106,10 @@ public class Test_120_Streams {
     @Test
     void findByIdUsingStreams_2() {
         // Arrange.
-        long nonexistentTransactionId = 17;
+        long nonexistentInvoiceId = 17;
 
         // Act.
-        Transaction observed = findWithinArrayList.findByIdUsingStreams(nonexistentTransactionId);
+        Invoice observed = findWithinArrayList.findByIdUsingStreams(nonexistentInvoiceId);
 
         // Assert.
         assertNull(observed);
@@ -118,10 +118,10 @@ public class Test_120_Streams {
     @Test
     void findIndexOf_1() {
         // Arrange.
-        long existentTransactionId = 4;
+        long existentInvoiceId = 4;
 
         // Act.
-        int observedIdx = findWithinArrayList.findIndexOf(existentTransactionId);
+        int observedIdx = findWithinArrayList.findIndexOf(existentInvoiceId);
 
         // Assert.
         int expectedIdx = 2;
@@ -131,10 +131,10 @@ public class Test_120_Streams {
     @Test
     void findIndexOf_2() {
         // Arrange.
-        long nonexistentTransactionId = 17;
+        long nonexistentInvoiceId = 17;
 
         // Act.
-        int observedIdx = findWithinArrayList.findIndexOf(nonexistentTransactionId);
+        int observedIdx = findWithinArrayList.findIndexOf(nonexistentInvoiceId);
 
         // Assert.
         int expectedIdx = -1;

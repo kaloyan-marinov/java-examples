@@ -1,6 +1,6 @@
 package com.github.streams;
 
-public record Transaction(
+public record Invoice(
     long id,
     int year,
     float amount

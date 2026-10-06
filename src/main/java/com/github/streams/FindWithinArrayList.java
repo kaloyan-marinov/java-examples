@@ -7,54 +7,54 @@ import java.util.stream.IntStream;
 
 public class FindWithinArrayList {
 
-    private List<Transaction> transactions;
+    private List<Invoice> invoices;
 
-    public FindWithinArrayList(List<Transaction> transactions) {
-        // Validate that there are no duplicated transaction IDs.
+    public FindWithinArrayList(List<Invoice> invoices) {
+        // Validate that there are no duplicated invoice IDs.
         Set<Long> ids = new HashSet<>();
-        for (Transaction t : transactions) {
+        for (Invoice t : invoices) {
             ids.add(t.id());
         }
 
-        if (ids.size() < transactions.size()) {
-            throw new RuntimeException("the passed-in 'transactions' contains distinct elements with equal IDs");
+        if (ids.size() < invoices.size()) {
+            throw new RuntimeException("the passed-in 'invoices' contains distinct elements with equal IDs");
         }
 
-        this.transactions = transactions;
+        this.invoices = invoices;
     }
 
-    public List<Transaction> getTransactions() {
-        return transactions;
+    public List<Invoice> getInvoices() {
+        return invoices;
     }
 
-    public Transaction findByIdWithoutStreams(long transactionId) {
-        Transaction transaction = null;
+    public Invoice findByIdWithoutStreams(long invoiceId) {
+        Invoice invoice = null;
 
-        for (Transaction t : this.transactions) {
-            if (t.id() == transactionId) {
-                transaction = t;
+        for (Invoice t : this.invoices) {
+            if (t.id() == invoiceId) {
+                invoice = t;
                 break;
             }
         }
 
-        return transaction;
+        return invoice;
     }
 
-    public Transaction findByIdUsingStreams(long transactionId) {
-        Transaction transaction = this.transactions
+    public Invoice findByIdUsingStreams(long invoiceId) {
+        Invoice invoice = this.invoices
             .stream()
-            .filter((t) -> t.id() == transactionId)
+            .filter((t) -> t.id() == invoiceId)
             .findFirst()
             .orElse(null)
         ;
 
-        return transaction;
+        return invoice;
     }
 
-    public int findIndexOf(long transactionId) {
+    public int findIndexOf(long invoiceId) {
         int idx =
-            IntStream.range(0, this.transactions.size())
-            .filter((i) -> this.transactions.get(i).id() == transactionId)
+            IntStream.range(0, this.invoices.size())
+            .filter((i) -> this.invoices.get(i).id() == invoiceId)
             .findFirst()
             .orElse(-1)
         ;
