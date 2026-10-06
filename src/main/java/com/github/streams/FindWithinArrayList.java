@@ -12,8 +12,8 @@ public class FindWithinArrayList {
     public FindWithinArrayList(List<Invoice> invoices) {
         // Validate that there are no duplicated invoice IDs.
         Set<Long> ids = new HashSet<>();
-        for (Invoice t : invoices) {
-            ids.add(t.id());
+        for (Invoice invc : invoices) {
+            ids.add(invc.id());
         }
 
         if (ids.size() < invoices.size()) {
@@ -30,9 +30,9 @@ public class FindWithinArrayList {
     public Invoice findByIdWithoutStreams(long invoiceId) {
         Invoice invoice = null;
 
-        for (Invoice t : this.invoices) {
-            if (t.id() == invoiceId) {
-                invoice = t;
+        for (Invoice invc : invoices) {
+            if (invc.id() == invoiceId) {
+                invoice = invc;
                 break;
             }
         }
@@ -41,9 +41,9 @@ public class FindWithinArrayList {
     }
 
     public Invoice findByIdUsingStreams(long invoiceId) {
-        Invoice invoice = this.invoices
+        Invoice invoice = invoices
             .stream()
-            .filter((t) -> t.id() == invoiceId)
+            .filter((invc) -> invc.id() == invoiceId)
             .findFirst()
             .orElse(null)
         ;
@@ -52,13 +52,13 @@ public class FindWithinArrayList {
     }
 
     public int findIndexOf(long invoiceId) {
-        int idx =
-            IntStream.range(0, this.invoices.size())
-            .filter((i) -> this.invoices.get(i).id() == invoiceId)
+        int index =
+            IntStream.range(0, invoices.size())
+            .filter((idx) -> invoices.get(idx).id() == invoiceId)
             .findFirst()
             .orElse(-1)
         ;
 
-        return idx;
+        return index;
     }
 }
